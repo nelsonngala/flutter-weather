@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
           BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, state) {
               return ListTile(
-                title: const Text('Change to dark Theme'),
+                title: const Text('Change to dark theme'),
                 trailing: Switch(
                     value: state.theme == AppTheme.darkTheme,
                     onChanged: (value) {

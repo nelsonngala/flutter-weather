@@ -34,7 +34,10 @@ class LoadedWeather extends StatelessWidget {
           color: Theme.of(context).primaryColor,
           child: Column(children: [
             const SizedBox(height: 10),
-            Text('Updated: ${DateFormat('HH:mm').format(DateTime.now())}'),
+            Text(
+              'Updated: ${DateFormat('HH:mm').format(DateTime.now())}',
+              style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
+            ),
             Text(
               '${weatherModel.city.name}, ${weatherModel.city.country}',
               style:

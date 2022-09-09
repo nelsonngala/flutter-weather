@@ -2,8 +2,8 @@ import 'package:advanced_weather/presentation/widgets/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/bloc/theme_bloc.dart';
 import '../../logic/settingsbloc/settings_bloc.dart';
+import '../../logic/themebloc/theme_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
           BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, state) {
               return ListTile(
-                title: const Text('Change App Theme'),
+                title: const Text('Change to dark Theme'),
                 trailing: Switch(
                     value: state.theme == AppTheme.darkTheme,
                     onChanged: (value) {

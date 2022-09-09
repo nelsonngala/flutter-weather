@@ -1,3 +1,4 @@
+import 'package:advanced_weather/logic/useLocbloc/user_loc_bloc.dart';
 import 'package:advanced_weather/logic/weatherbloc/weather_bloc.dart';
 import 'package:advanced_weather/presentation/widgets/geoWidgets/error_geo.dart';
 import 'package:advanced_weather/presentation/widgets/geoWidgets/loaded_geo.dart';
@@ -59,6 +60,26 @@ class _SearchScreenState extends State<SearchScreen> {
                 onEditingComplete: () {
                   BlocProvider.of<GeoBloc>(context)
                       .add(GeoLoadingEvent(location: cityController.text));
+                },
+              ),
+              BlocBuilder<UserLocBloc, UserLocState>(
+                builder: (context, state) {
+                  return TextButton.icon(
+                      onPressed: () async {
+                        BlocProvider.of<UserLocBloc>(context)
+                            .add(const UserLocEvent());
+                        if (state is UserlocLoaded) {
+                          BlocProvider.of<WeatherBloc>(context).add(
+                              WeatherLoadingEvent(
+                                  lat: state.userLocation.lat,
+                                  lon: state.userLocation.lon));
+                        }
+                        if (state is UserLocError) {
+                          Text(state.error);
+                        }
+                      },
+                      icon: const Icon(Icons.location_pin),
+                      label: const Text('Use your location'));
                 },
               ),
               Expanded(

@@ -5,7 +5,8 @@
 import 'dart:convert';
 
 List<GeoLocModel> geoLocationFromJson(String str) => List<GeoLocModel>.from(
-    json.decode(str).map((x) => GeoLocModel.fromJson(x)));
+      json.decode(str).map((x) => GeoLocModel.fromJson(x)),
+    );
 
 String geoLocationToJson(List<GeoLocModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));

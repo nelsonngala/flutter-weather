@@ -23,7 +23,10 @@ class Temperature extends StatelessWidget {
     return Text(
       '${_formattedTemperature(temperature)}°${units == TemperatureUnits.celsius ? "C" : "F"}',
       style: GoogleFonts.lato(
-          color: color, fontSize: fontSize, fontWeight: weight),
+        color: color,
+        fontSize: fontSize,
+        fontWeight: weight,
+      ),
     );
   }
 

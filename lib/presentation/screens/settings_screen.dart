@@ -23,13 +23,15 @@ class SettingsScreen extends StatelessWidget {
                 title: const Text('Temperature units'),
                 isThreeLine: true,
                 subtitle: const Text(
-                    'Use metric measurements for temperature units.'),
+                  'Use metric measurements for temperature units.',
+                ),
                 trailing: Switch(
-                    value: state.temperatureUnits == TemperatureUnits.celsius,
-                    onChanged: ((value) {
-                      BlocProvider.of<SettingsBloc>(context)
-                          .add(TemperatureToggledEvent());
-                    })),
+                  value: state.temperatureUnits == TemperatureUnits.celsius,
+                  onChanged: ((value) {
+                    BlocProvider.of<SettingsBloc>(context)
+                        .add(TemperatureToggledEvent());
+                  }),
+                ),
               );
             },
           ),
@@ -38,14 +40,15 @@ class SettingsScreen extends StatelessWidget {
               return ListTile(
                 title: const Text('Change to dark theme'),
                 trailing: Switch(
-                    value: state.theme == AppTheme.darkTheme,
-                    onChanged: (value) {
-                      BlocProvider.of<ThemeBloc>(context)
-                          .add(ThemeToggledEvent());
-                    }),
+                  value: state.theme == AppTheme.darkTheme,
+                  onChanged: (value) {
+                    BlocProvider.of<ThemeBloc>(context)
+                        .add(ThemeToggledEvent());
+                  },
+                ),
               );
             },
-          )
+          ),
         ],
       ),
     );

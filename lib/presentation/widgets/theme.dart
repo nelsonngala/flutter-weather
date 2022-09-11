@@ -9,5 +9,7 @@ final appThemeData = {
     primaryColor: AppUtilities.themeColor,
   ),
   AppTheme.darkTheme: ThemeData(
-      brightness: Brightness.dark, primaryColor: AppUtilities.darkThemeColor)
+    brightness: Brightness.dark,
+    primaryColor: AppUtilities.darkThemeColor,
+  ),
 };

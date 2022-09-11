@@ -38,6 +38,7 @@ class HomeScreen extends StatelessWidget {
           if (state is WeatherError) {
             return ErrorWeather(error: state.error);
           }
+
           return Container();
         },
       ),

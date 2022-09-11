@@ -20,11 +20,13 @@ class GeoBloc extends Bloc<GeoblocEvent, GeoblocState> {
               await _geolocData.getLocation(event.location);
           if (locData == null) {
             emit(const GeoError(
-                error: 'No location with that name in our database'));
+              error: 'No location with that name in our database',
+            ));
           }
           if (locData!.isEmpty) {
             emit(
-                const GeoError(error: 'The location entered is not available'));
+              const GeoError(error: 'The location entered is not available'),
+            );
           } else {
             emit(GeoLoaded(geoLocation: locData));
           }

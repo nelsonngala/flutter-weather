@@ -19,7 +19,8 @@ import 'logic/weatherbloc/weather_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final storage = await HydratedStorage.build(
-      storageDirectory: await getTemporaryDirectory());
+    storageDirectory: await getTemporaryDirectory(),
+  );
   HydratedBlocOverrides.runZoned(() => runApp(const MyApp()), storage: storage);
 }
 
@@ -30,28 +31,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => WeatherBloc(WeatherData()),
-          ),
-          BlocProvider(
-            create: (context) => GeoBloc(GeolocData()),
-          ),
-          BlocProvider(
-            create: (context) => ThemeBloc(),
-          ),
-          BlocProvider(create: (context) => SettingsBloc()),
-          BlocProvider(create: (context) => UserLocBloc(CurrentLocation()))
-        ],
-        child: BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (context, state) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: appThemeData[state.theme],
-              home: const HomeScreen(),
-            );
-          },
-        ));
+      providers: [
+        BlocProvider(
+          create: (context) => WeatherBloc(WeatherData()),
+        ),
+        BlocProvider(
+          create: (context) => GeoBloc(GeolocData()),
+        ),
+        BlocProvider(
+          create: (context) => ThemeBloc(),
+        ),
+        BlocProvider(create: (context) => SettingsBloc()),
+        BlocProvider(create: (context) => UserLocBloc(CurrentLocation())),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: appThemeData[state.theme],
+            home: const HomeScreen(),
+          );
+        },
+      ),
+    );
   }
 }

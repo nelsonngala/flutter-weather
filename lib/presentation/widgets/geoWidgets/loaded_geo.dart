@@ -14,17 +14,21 @@ class LoadedGeo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: geolocModel.length,
-        itemBuilder: ((context, index) {
-          GeoLocModel locations = geolocModel[index];
-          return ListTile(
-            title: Text(
-                '${locations.name}, ${locations.state ?? '_'},  ${locations.country}'),
-            onTap: () {
-              BlocProvider.of<WeatherBloc>(context).add(
-                  WeatherLoadingEvent(lat: locations.lat, lon: locations.lon));
-            },
-          );
-        }));
+      itemCount: geolocModel.length,
+      itemBuilder: ((context, index) {
+        GeoLocModel locations = geolocModel[index];
+
+        return ListTile(
+          title: Text(
+            '${locations.name}, ${locations.state ?? '_'},  ${locations.country}',
+          ),
+          onTap: () {
+            BlocProvider.of<WeatherBloc>(context).add(
+              WeatherLoadingEvent(lat: locations.lat, lon: locations.lon),
+            );
+          },
+        );
+      }),
+    );
   }
 }

@@ -29,7 +29,8 @@ class WeatherModel {
         message: json["message"],
         cnt: json["cnt"],
         list: List<ListElement>.from(
-            json["list"].map((x) => ListElement.fromJson(x))),
+          json["list"].map((x) => ListElement.fromJson(x)),
+        ),
         city: City.fromJson(json["city"]),
       );
 

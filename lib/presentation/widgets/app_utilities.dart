@@ -16,18 +16,22 @@ class AppUtilities {
 
 searchButton(BuildContext context) {
   return IconButton(
-      onPressed: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => const SearchScreen())));
-      },
-      icon: AppUtilities.searchIcon);
+    onPressed: () {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: ((context) => const SearchScreen())),
+      );
+    },
+    icon: AppUtilities.searchIcon,
+  );
 }
 
 settingsButton(BuildContext context) {
   return IconButton(
-      onPressed: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => const SettingsScreen())));
-      },
-      icon: AppUtilities.settingsIcon);
+    onPressed: () {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: ((context) => const SettingsScreen())),
+      );
+    },
+    icon: AppUtilities.settingsIcon,
+  );
 }

@@ -50,6 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     return BlocProvider.of<GeoBloc>(context)
                         .add(GeoLoadingEvent(location: value));
                   }
+
                   return;
                 },
                 textInputAction: TextInputAction.search,
@@ -65,35 +66,40 @@ class _SearchScreenState extends State<SearchScreen> {
               BlocBuilder<UserLocBloc, UserLocState>(
                 builder: (context, state) {
                   return TextButton.icon(
-                      onPressed: () async {
-                        BlocProvider.of<UserLocBloc>(context)
-                            .add(const UserLocEvent());
-                        if (state is UserlocLoaded) {
-                          BlocProvider.of<WeatherBloc>(context).add(
-                              WeatherLoadingEvent(
-                                  lat: state.userLocation.lat,
-                                  lon: state.userLocation.lon));
-                        }
-                        if (state is UserLocError) {
-                          Text(state.error);
-                        }
-                      },
-                      icon: const Icon(Icons.location_pin),
-                      label: const Text('Use your location'));
+                    onPressed: () async {
+                      BlocProvider.of<UserLocBloc>(context)
+                          .add(const UserLocEvent());
+                      if (state is UserlocLoaded) {
+                        BlocProvider.of<WeatherBloc>(context).add(
+                          WeatherLoadingEvent(
+                            lat: state.userLocation.lat,
+                            lon: state.userLocation.lon,
+                          ),
+                        );
+                      }
+                      if (state is UserLocError) {
+                        Text(state.error);
+                      }
+                    },
+                    icon: const Icon(Icons.location_pin),
+                    label: const Text('Use your location'),
+                  );
                 },
               ),
               Expanded(
                 child: BlocBuilder<GeoBloc, GeoblocState>(
-                    builder: ((context, state) {
-                  if (state is GeoLoaded) {
-                    return LoadedGeo(geolocModel: state.geoLocation);
-                  }
-                  if (state is GeoError) {
-                    return ErrorGeo(error: state.error);
-                  }
-                  return Container();
-                })),
-              )
+                  builder: ((context, state) {
+                    if (state is GeoLoaded) {
+                      return LoadedGeo(geolocModel: state.geoLocation);
+                    }
+                    if (state is GeoError) {
+                      return ErrorGeo(error: state.error);
+                    }
+
+                    return Container();
+                  }),
+                ),
+              ),
             ],
           ),
         ),
